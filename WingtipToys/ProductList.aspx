@@ -7,7 +7,7 @@
                 <h2><%: Page.Title %></h2>
             </hgroup>
 
-            <asp:ListView ID="productList" runat="server" 
+           <%-- <asp:ListView ID="productList" runat="server" 
                 DataKeyNames="ProductID" GroupItemCount="4"
                 ItemType="WingtipToys.Models.Product" SelectMethod="GetProducts">
                 <EmptyDataTemplate>
@@ -73,7 +73,31 @@
                         </tbody>
                     </table>
                 </LayoutTemplate>
+            </asp:ListView>--%>
+
+             <asp:ListView ID="productList" runat="server" 
+                DataKeyNames="ProductID"    
+                ItemType="WingtipToys.Models.Product" SelectMethod="GetProducts">
+                <EmptyDataTemplate>
+                    <ul>
+                        <li>NADA</li>
+                    </ul>
+                </EmptyDataTemplate>
+
+                
+                <ItemTemplate>
+                    <li> <a href="ProductDetails.aspx?productID=<%#:Item.ProductID%>">
+                                        <img src="/Catalog/Images/Thumbs/<%#:Item.ImagePath%>"
+                                            width="100" height="75" style="border: solid" /></a></li>
+                    
+                </ItemTemplate>
+                <LayoutTemplate>
+                    <ul>
+                        <li  id="itemPlaceholder" runat="server"></li>
+                    </ul>
+                </LayoutTemplate>
             </asp:ListView>
+
         </div>
     </section>
 </asp:Content>
